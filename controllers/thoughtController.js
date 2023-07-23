@@ -40,13 +40,13 @@ module.exports = {
                 })
                 .then((user) =>
                 !user
-                    ? res.status(404).json({ message: "Thought created, but no user is associated with this id!" })
-                    : res.json({
+                    ? res.status(400).json({ message: "Thought created, but no user is associated with this id!" })
+                    : res.status(200).json({
                         updatedUser: user,
                         message: 'Thought added to user.'
                     })
                 );
-            res.status(200).json(thoughts);
+            // res.status(200).json( { thoughts, message: 'Thought added to user.'});
         } catch (err) {
             console.log(err)
             return res.status(500).json({ err, message: 'Error: Could not create the thought.'});
