@@ -2,9 +2,11 @@
 
 ## Description
 
-<!-- This JavaScript based application will allow the user to manage the back-end of an e-commerce website, using Sequelize to manage a MySQL-based database.
+This JavaScript based application will allow the user to manage the back-end API of a social media website, using MongoDB to manage a NoSQL-based database.  The user can share their thoughts, react to their friends' thoughts, and create a friend list.
 
-This app was built to test the builder's knowledge on Object Relational Mapping (ORM), through integrating a MySQL database to a back-end app using Sequelize. -->
+This app was built to test the builder's knowledge on managing a MongoDB database and the accompanying Mongoose ODM.
+
+
 
 ## Installation
 
