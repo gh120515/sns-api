@@ -78,6 +78,47 @@ module.exports = {
             console.log(err)
             return res.status(500).json({ err, message: 'Error: Could not delete the user.'});
         }
-    }
+    },
 
+    // Create (POST) a new friend to a user's friend list
+    async addFriend(req, res) {
+        try {
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $addToSet: { friends: req.params.friendId } },
+                { runValidators: true, new: true }
+            );
+            
+            if(!user) {
+                return res.status(400)
+                    .json({ message: 'Error: No user with that ID found.' })
+            };
+
+            res.status(200).json({ user, message: 'Friend added!'});
+        } catch (err) {
+            console.log(err)
+            return res.status(500).json({ err, message: 'Error: Could not add a friend to this user.'});
+        }
+    },
+
+    // Remove (DELETE) a friend from the user's friend list
+    async removeFriend(req, res) {
+        try {
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $pull: { friends: req.params.friendId } },
+                { runValidators: true, new: true }
+            );
+            
+            if(!user) {
+                return res.status(400)
+                    .json({ message: 'Error: No user with that ID found.' })
+            };
+
+            res.status(200).json({ user, message: 'Friend removed!'});
+        } catch (err) {
+            console.log(err)
+            return res.status(500).json({ err, message: 'Error: Could not add a friend to this user.'});
+        }
+    }
 };
